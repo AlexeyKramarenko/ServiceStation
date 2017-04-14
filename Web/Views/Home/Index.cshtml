@@ -1,0 +1,43 @@
+﻿@using Web.Models
+@model MainFormViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    tr td:first-child {
+        width: 120px;
+    }
+
+    header {
+        margin: 0 0 15px 0;
+    }
+
+    #diagnostic {
+        margin: 0 0 15px 0;
+    }
+   table tr:last-child td{
+        padding-top:20px;
+    }
+</style>
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+
+
+<header>
+    <label> Транспортное средство:</label>
+    @Html.DropDownListFor(a => a.SelectedTransport, Model.TransportTypes, new { id = "js-transport" })
+</header>
+
+
+<label>Диагностика:</label>
+<div id="diagnostic">
+    @{ Html.RenderAction("Diagnostic", "Home", new { transport = Model.SelectedTransport }); }
+</div>
+
+<div id="js-result"></div>
+
+<script>
+    $('#js-transport').change(function () {
+        location = "/home/index/" + $(this).val();
+    })
+</script>

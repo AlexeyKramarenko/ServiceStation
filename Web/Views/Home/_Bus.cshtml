@@ -1,0 +1,44 @@
+﻿@model Web.Models.BusViewModel
+
+@using (Ajax.BeginForm("Diagnostic", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "js-result" }))
+{ 
+    <table>
+        <tr>
+            <td>Заказ:</td>
+            <td>@Html.TextBoxFor(a => a.OrderName)</td>
+        </tr>
+        <tr>
+            <td>Кузов:</td>
+            <td>@Html.TextBoxFor(a => a.Body)</td>
+        </tr>
+        <tr>
+            <td>Колеса:</td>
+            <td>@Html.TextBoxFor(a => a.Wheels)</td>
+        </tr>
+        <tr>
+            <td>Двигатель:</td>
+            <td>@Html.TextBoxFor(a => a.Engine)</td>
+        </tr>
+        <tr>
+            <td>Тормоза:</td>
+            <td>@Html.TextBoxFor(a => a.Brakes)</td>
+        </tr>
+        <tr>
+            <td>Салон:</td>
+            <td>@Html.TextBoxFor(a => a.Salon)</td>
+        </tr>
+        <tr>
+            <td>Поручни:</td>
+            <td>@Html.TextBoxFor(a => a.Rails)</td>
+        </tr>
+        <tr>
+            <td colspan="2">     
+                @Html.Action("AdditionalServices", Model.SelectedTransport)           
+            </td>            
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="save"/><b>Сохранить</b></td>
+            <td><input type="submit" value="Расчет" /></td>
+        </tr>
+    </table>
+}

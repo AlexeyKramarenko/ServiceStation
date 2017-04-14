@@ -1,0 +1,20 @@
+﻿
+@model Web.Models.ResultViewModel
+
+Общее состояние:
+@Model.GeneralCondition %
+
+<br />
+
+Стоимость ремонта:
+@Model.RepairPrice грн
+
+<br />
+
+Стоимость дополнительных услуг:
+@Model.AdditionalServicesPrice грн
+
+<br />
+
+<b>К оплате всего:</b>
+@Model.SummaryPrice грн
