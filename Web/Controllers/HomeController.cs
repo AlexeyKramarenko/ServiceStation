@@ -50,13 +50,15 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Diagnostic(FormCollection form)
+        public ActionResult Diagnostic(FormCollection form, AdditionalServicesViewModel servicesVM)// , Transport transport, CarViewModel m1, TruckViewModel m2, BusViewModel m3)
         {
             if (form["save"] != null)
                 service.SaveOrder(form);
 
-            var servicesVM = mapper.GetServiceViewModelList(form);
-            var servicesPrice = service.GetAdditionalServicesPrice(servicesVM);
+            //var servicesVM = mapper.GetServiceViewModelList(form);
+            //var servicesPrice = service.GetAdditionalServicesPrice(servicesVM);
+
+            var servicesPrice = service.GetAdditionalServicesPrice(servicesVM.Services);
             var condition = service.GetGenaralCondition(form);
             var repairPrice = service.GetRepairPrice(condition, TransportData.PricePerRepairItem);
             var summaryPrice = service.GetSummaryPrice(repairPrice, servicesPrice);
